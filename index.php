@@ -14,7 +14,7 @@ session_start();
                 include('./Frontend/src/header/header.php');
             }
             else{
-                include('./backend/view/notFound/404NotFound.php');
+                include('./Backend/view/notFound/404NotFound.php');
             }
         ?>
     </header>
@@ -38,15 +38,5 @@ session_start();
         }
         ?>
     </main>
-    <footer>
-        <?php
-            if (file_exists('./Frontend/src/footer/footer.php')) {
-                include('./Frontend/src/footer/footer.php');
-            }
-            else{
-                include('./backend/view/notFound/404NotFound.php');
-            }
-        ?>
-    </footer>
 </body>
 </html>
