@@ -12,6 +12,7 @@ class dbConfig
     {
         $this->host = 'localhost';
         $this->dbName = 'passwordmanager';
+        $this->user = 'root';
         $this->password = '';
         $this->pdo = null;
 
@@ -24,7 +25,7 @@ class dbConfig
         {
             try{
                 $dsn = 'mysql:host=' .$this->host . ';dbname=' .$this->dbName . ';charset=utf8'; //route pour la bd
-                $this->pdo = new PDO($dsn,$this->user,$this->mdp); //creation du pdo
+                $this->pdo = new PDO($dsn,$this->user,$this->password); //creation du pdo
                 $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
             }catch (PDOException $e){
                 echo "Erreur de connexion a la bd";

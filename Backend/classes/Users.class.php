@@ -10,7 +10,7 @@ class Users
     public function __construct( $email, $password, $created_at ='')
     {
         $this->email = $email;
-        $this->password = $this->hashPassword($password);
+        $this->password = $password;
         $this->created_at = $created_at;
         $this->isActif = true;
     }
@@ -41,8 +41,13 @@ class Users
         $this->isActif = $isActif;
     }
 
-    private function hashPassword($password)
+    private function setpassword($password)
     {
-        return password_hash($password, PASSWORD_DEFAULT);
+        $this->password = $password ;
+    }
+
+    public function hashPassword()
+    {
+        $this->setpassword(password_hash($this->password, PASSWORD_DEFAULT));
     }
 }

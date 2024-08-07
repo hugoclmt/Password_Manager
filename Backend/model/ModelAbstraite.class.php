@@ -1,6 +1,6 @@
 <?php
 
-require '../config/dbConfig.class.php';
+require_once './Backend/config/dbConfig.class.php';
 
 abstract class ModelAbstraite
 {

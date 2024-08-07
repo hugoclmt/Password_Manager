@@ -1,4 +1,5 @@
 <?php
+require_once './Backend/model/ModelUser/ModelUser.class.php';
 
 class ModelUserConnexion extends ModelUser
 {
@@ -14,16 +15,16 @@ class ModelUserConnexion extends ModelUser
         {
             if(password_verify($users->getPassword(), $result['password']))
             {
-                return true;
+                return true; //Si le mdp est ok on retourne true
             }
             else
             {
-                return false;
+                return false; //Si le mdp est incorrect on retourne false
             }
         }
         else
         {
-            return null;
+            return null; // Si l'email n'existe pas on retourne null
         }
     }
 }

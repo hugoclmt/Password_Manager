@@ -1,5 +1,7 @@
 <?php
 
+require_once './Backend/model/ModelUser/ModelUser.class.php';
+
 class ModelUserInscription extends ModelUser
 {
     public function __construct()

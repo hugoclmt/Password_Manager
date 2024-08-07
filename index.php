@@ -1,5 +1,9 @@
 <?php
 session_start();
+require_once './Backend/controller/ControllerUser/ControllerUser.class.php';
+
+$controllerUser = new ControllerUser();
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
