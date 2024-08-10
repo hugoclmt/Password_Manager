@@ -1,13 +1,13 @@
 <?php
 
-class Passworsd
+class Password
 {
     private $passwordEncrypted;
     private $siteName;
     private $siteURL;
     private $notes;
     private $created_at;
-
+    private $idUser;
 
     public function __construct($passwordEncrypted, $siteName, $siteURL, $created_at, $notes = '')
     {
@@ -16,6 +16,7 @@ class Passworsd
         $this->siteURL = $siteURL;
         $this->notes = $notes;
         $this->created_at = $created_at;
+        $this->idUser = $_SESSION['id'];
     }
 
     public function getPasswordEncrypted()
@@ -41,5 +42,9 @@ class Passworsd
     public function getCreated_at()
     {
         return $this->created_at;
+    }
+
+    public function getId(){
+        return $this->idUser;
     }
 }

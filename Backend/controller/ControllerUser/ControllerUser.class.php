@@ -23,6 +23,7 @@ class ControllerUser
             $user = new Users($email, $password);
             $result = $this->modelUserConnexion->connexion($user);
             if ($result) {
+                $_SESSION['connected'] = true;
                 header('Location: ./Frontend/userAuthentificated/indexUserAuthentificated.php');
                 exit();
             } else {
@@ -43,6 +44,7 @@ class ControllerUser
             $user->hashPassword();
             $result = $this->modelUserInscription->inscription($user);
             if ($result) {
+                $_SESSION['connected'] = true;
                 header('Location: ./Frontend/userAuthentificated/indexUserAuthentificated.php');
                 exit();
             } else {

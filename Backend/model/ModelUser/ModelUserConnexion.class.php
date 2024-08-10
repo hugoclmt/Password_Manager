@@ -15,6 +15,7 @@ class ModelUserConnexion extends ModelUser
         {
             if(password_verify($users->getPassword(), $result['password']))
             {
+                $_SESSION['id'] = $result['idUser'];
                 return true; //Si le mdp est ok on retourne true
             }
             else

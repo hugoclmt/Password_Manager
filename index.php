@@ -4,6 +4,7 @@ require_once './Backend/controller/ControllerUser/ControllerUser.class.php';
 
 $controllerUser = new ControllerUser();
 
+$_SESSION['connected'] = false;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
