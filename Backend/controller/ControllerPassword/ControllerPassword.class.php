@@ -1,6 +1,6 @@
 <?php
 
-require_once './Backend/model/ModelPassword/ModelPassword.class.php';
+require_once '../../Backend/model/ModelPassword/ModelPassword.class.php';
 
 class ControllerPassword
 {

@@ -10,6 +10,7 @@ $_SESSION['connected'] = false;
 <html lang="fr">
 <head>
     <title>PasswordManager</title>
+    <link href="./Frontend/lib/css/UserRandom/index.css" rel="stylesheet">
 </head>
 
 <body>

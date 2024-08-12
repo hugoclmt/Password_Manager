@@ -1,0 +1,46 @@
+#header{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+#navigation nav ul {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    position: fixed;
+}
+
+#navigation nav ul li{
+    margin: 15px;
+    list-style: none;
+}
+
+#navigation nav ul li a {
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+#navigation nav ul li a:hover{
+    color: black;
+    background-color: white;
+    transition: 0.6s ease-in-out;
+}
+
+#mainAccueil{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#descriptionProjet{
+    display: flex;
+    align-items: center;
+    
+}

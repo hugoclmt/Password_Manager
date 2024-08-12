@@ -49,5 +49,6 @@ else{
         ?>
     </main>
     <script src="../lib/js/generateurMotDePasse.js"></script>
+
 </body>
 </html>

@@ -1,9 +1,9 @@
-<div>
-    <div>
+<div id="main">
+    <div id="mainAccueil">
         <h2><em>La sécurité avant tout chez HCompany</em></h2>
         <button>Nous découvrir</button>
     </div>
-    <div>
+    <div id="descriptionProjet">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec molestie ante libero, sed mattis nunc imperdiet id. Sed at risus non eros accumsan auctor non eget elit. Maecenas ac tincidunt leo. Aliquam pretium risus diam, sit amet commodo risus efficitur efficitur. Vivamus commodo in lectus non egestas. Sed non consectetur ex. Quisque a risus ac ligula aliquam euismod eu id elit. Quisque elementum, nunc ut vehicula iaculis, nibh magna interdum mauris, at maximus urna sem ac sapien. Proin convallis erat dui, ac scelerisque lorem luctus nec. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi egestas mi id hendrerit pulvinar.
 
             Fusce posuere sagittis nibh, tincidunt fringilla enim faucibus a. Curabitur eu massa accumsan, sollicitudin diam non, sollicitudin risus. Ut eleifend sollicitudin varius. Phasellus cursus euismod arcu, a hendrerit dolor porta id. Maecenas massa quam, tincidunt nec condimentum elementum, euismod ut mi. Cras sit amet est ac augue sagittis pharetra. Fusce mauris dolor, viverra vitae dictum auctor, dignissim quis augue. Nulla justo odio, pharetra eget nunc egestas, sollicitudin vulputate arcu. Vestibulum feugiat velit lorem, vel vulputate dui vulputate eget. Donec in pellentesque nulla, non tempus urna. Sed eget vulputate velit. Nunc hendrerit porttitor nibh eu aliquam. Etiam sit amet dapibus odio, sit amet dictum nisi. Quisque volutpat gravida rhoncus. Maecenas consectetur massa neque, ut aliquet leo semper eu. Aliquam quam turpis, maximus ac pulvinar vel, fringilla in dolor.
