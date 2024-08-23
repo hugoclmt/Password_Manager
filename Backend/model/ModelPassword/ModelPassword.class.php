@@ -38,7 +38,7 @@ class ModelPassword extends ModelAbstraite
         $results = $req->fetchAll(PDO::FETCH_ASSOC);
         $passwords = [];
         foreach ($results as $result) {
-            $passwords = new Password($result['passwordEncrypted'], $result['siteName'], $result['siteURL'], $result['created_at'], $result['notes']);
+            $passwords[] = new Password($result['passwordEncrypted'], $result['siteName'], $result['siteURL'], $result['created_at'],$result['salt'],$result['iv'] ,$result['notes']);
         }
         return $passwords;
     }

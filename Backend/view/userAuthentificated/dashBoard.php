@@ -1,11 +1,17 @@
 <?php
 $password_all = $controller->getAllPassword();
-if (isset($_POST['password'])) {
+
+if (isset($_POST['password']) && isset($_POST['nameSite']) && isset($_POST['url']) && isset($_POST['note'])) {
     $password = $_POST['password'];
     $nameSite = $_POST['nameSite'];
     $url = $_POST['url'];
     $note = $_POST['note'];
+
+    $result = $controller->addPassword($password, $nameSite, $url, $note);
+    $password_all = $controller->getAllPassword();
+
 }
+
 ?>
 
 <div>
@@ -35,7 +41,7 @@ if (isset($_POST['password'])) {
         ?>
         <div>
             <fieldset>
-                <p>Premier mdp</p>
+                <p><?php echo $password->getPasswordEncrypted() ?></p>
                 <button>Modifier le mot de passe</button>
                 <button>Supprimer le mot de passe</button>
             </fieldset>

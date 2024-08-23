@@ -1,6 +1,7 @@
 <?php
 require_once './Backend/model/ModelUser/ModelUserConnexion.class.php';
 require_once './Backend/model/ModelUser/ModelUserInscription.class.php';
+require_once './Backend/classes/Users.class.php';
 class ControllerAuth
 {
     private $modelUserConnexion;

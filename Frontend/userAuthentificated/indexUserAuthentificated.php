@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../../Backend/controller/Controller.class.php';
+require_once '../../Backend/classes/Password.class.php';
 if (!isset($_SESSION['connected']) || !$_SESSION['connected']){
     header('Location: ../../index.php');
     exit();

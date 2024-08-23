@@ -2,7 +2,7 @@
 session_start();
 require_once './Backend/controller/ControllerAuth.class.php';
 
-$controller = new ControllerAuth();
+$controllerAuth = new ControllerAuth();
 
 $_SESSION['connected'] = false;
 ?>

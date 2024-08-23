@@ -11,21 +11,26 @@ class Password
     private $salt;
     private $iv;
 
-    public function __construct($passwordEncrypted, $siteName, $siteURL, $created_at, $notes = '')
+    public function __construct($passwordEncrypted, $siteName, $siteURL, $created_at, $salt, $iv,$notes = '')
     {
         $this->passwordEncrypted = $passwordEncrypted;
         $this->siteName = $siteName;
         $this->siteURL = $siteURL;
         $this->notes = $notes;
         $this->created_at = $created_at;
-        $this->salt = random_bytes(32);
-        $this->iv = random_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+        $this->salt = $salt;
+        $this->iv = $iv;
         $this->idUser = $_SESSION['id'];
     }
 
     public function getPasswordEncrypted()
     {
         return $this->passwordEncrypted;
+    }
+
+    public function setPasswordEncrypted($newPassword)
+    {
+        $this->passwordEncrypted = $newPassword;
     }
 
     public function getSiteName()
@@ -57,6 +62,7 @@ class Password
     {
         return $this->iv;
     }
+
 
     public function getId(){
         return $this->idUser;

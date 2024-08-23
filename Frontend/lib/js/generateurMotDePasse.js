@@ -9,4 +9,3 @@ document.getElementById("generatePassword").addEventListener("click", function()
     }
     inputPassword.value = password;
 });
-

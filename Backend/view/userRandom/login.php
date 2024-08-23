@@ -4,7 +4,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $result = $controller->connexion($email, $password);
+    $result = $controllerAuth->connexion($email, $password);
     if (!$result) {
         echo "Erreur de connexion";
     }
