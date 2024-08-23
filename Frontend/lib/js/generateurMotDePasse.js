@@ -1,5 +1,4 @@
 document.getElementById("generatePassword").addEventListener("click", function() {
-    console.log("ok");
     const inputPassword = document.getElementById("password");
     const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
     let password = "";
@@ -9,5 +8,5 @@ document.getElementById("generatePassword").addEventListener("click", function()
         password += charset[randomIndex];
     }
     inputPassword.value = password;
-    console.log(password);
 });
+

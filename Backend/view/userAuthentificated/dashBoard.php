@@ -1,5 +1,5 @@
 <?php
-$password_all = $controllerPassword->getAllPassword();
+$password_all = $controller->getAllPassword();
 if (isset($_POST['password'])) {
     $password = $_POST['password'];
     $nameSite = $_POST['nameSite'];
@@ -18,13 +18,14 @@ if (isset($_POST['password'])) {
                 <span class="close">&times;</span>
                 <h2>Votre nouveau mot de passe</h2>
                 <form method="post">
-                    <input id="password" type="password" value="password" placeholder="Votre mot de passe">
-                    <input type="text" value="nameSite" placeholder="Nom du site web">
-                    <input type="text" value="url" placeholder="URL du site web">
-                    <input type="text" value="note" placeholder="Notes à ajouter">
-                    <button id="generatePassword">Générer un mot de passe</button>
+                    <input id="password" type="password" name="password" placeholder="Votre mot de passe">
+                    <input type="text" name="nameSite" placeholder="Nom du site web">
+                    <input type="text" name="url" placeholder="URL du site web">
+                    <input type="text" name="note" placeholder="Notes à ajouter">
+
                     <button id="savePassword">Enregistrer</button>
                 </form>
+                <button id="generatePassword">Générer un mot de passe</button>
             </div>
         </div>
     </div>

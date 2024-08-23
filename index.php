@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once './Backend/controller/ControllerUser/ControllerUser.class.php';
+require_once './Backend/controller/ControllerAuth.class.php';
 
-$controllerUser = new ControllerUser();
+$controller = new ControllerAuth();
 
 $_SESSION['connected'] = false;
 ?>

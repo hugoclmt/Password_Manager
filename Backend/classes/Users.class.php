@@ -15,7 +15,6 @@ class Users
         $this->isActif = true;
     }
 
-
     public function getEmail()
     {
         return $this->email;

@@ -5,7 +5,7 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
     $passwordConfirm = $_POST['passwordConfirm'];
 
     if ($password == $passwordConfirm) {
-        $result = $controllerUser->inscription($email, $password);
+        $result = $controller->inscription($email, $password);
         if ($result) {
             echo 'Vous êtes connecté';
         } else {

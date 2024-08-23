@@ -1,13 +1,13 @@
 <?php
 session_start();
-require_once '../../Backend/controller/ControllerPassword/ControllerPassword.class.php';
+require_once '../../Backend/controller/Controller.class.php';
 if (!isset($_SESSION['connected']) || !$_SESSION['connected']){
     header('Location: ../../index.php');
     exit();
 }
 else{
     $_SESSION['page'] = 'dashBoard';
-    $controllerPassword = new ControllerPassword();
+    $controller = new Controller();
 }
 ?>
 <!DOCTYPE html>

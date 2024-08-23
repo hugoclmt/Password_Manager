@@ -20,6 +20,7 @@ class ModelUserConnexion extends ModelUser
             }
             else
             {
+
                 return false; //Si le mdp est incorrect on retourne false
             }
         }

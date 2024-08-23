@@ -10,6 +10,26 @@ class ModelPassword extends ModelAbstraite
         parent::__construct();
     }
 
+    public function addPassword(Password $password,$key){
+        $query = "INSERT INTO password (passwordEncrypted, siteName, siteURL, notes, created_at, salt, iv, idUser) VALUES (:passwordEncrypted, :siteName, :siteURL, :notes, :created_at, :salt, :iv, :idUser)";
+        $req = $this->pdo->prepare($query);
+        $req -> bindValue(':passwordEncrypted', openssl_encrypt($password->getPasswordEncrypted(), 'aes-256-cbc', $key, 0, $password->getIv()));
+        $req -> bindValue(':siteName', $password->getSiteName());
+        $req -> bindValue(':siteURL', $password->getSiteURL());
+        $req -> bindValue(':notes', $password->getNotes());
+        $req -> bindValue(':created_at', $password->getCreated_at());
+        $req -> bindValue(':salt', $password->getSalt());
+        $req -> bindValue(':iv', $password->getIv());
+        $req -> bindValue(':idUser', $password->getId());
+        if ($req->execute()){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+
     public function getAllPassword(){
         $query = "SELECT * FROM password WHERE idUser = :idUser";
         $req = $this->pdo->prepare($query);
@@ -23,7 +43,7 @@ class ModelPassword extends ModelAbstraite
         return $passwords;
     }
 
-    public function modifierPassword(){
+    public function modifierPassword(Password $password){
 
     }
 
@@ -45,7 +65,12 @@ class ModelPassword extends ModelAbstraite
 
     }
 
-    private function getPassword(Password $password){
-
+    private function getPassword($id){
+        $query = "SELECT * FROM password WHERE idPassword = :idPassword";
+        $req = $this->pdo->prepare($query);
+        $req -> bindValue(':idPassword',$id);
+        $req->execute();
+        $result = $req->fetch();
+        return new Password($result['passwordEncrypted'],$result['siteName'],$result['siteUrl'],$result['created_at'],$result['notes']);
     }
 }
