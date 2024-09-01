@@ -9,7 +9,7 @@ if (isset($_POST['password']) && isset($_POST['nameSite']) && isset($_POST['url'
 
     $result = $controller->addPassword($password, $nameSite, $url, $note);
     $password_all = $controller->getAllPassword();
-
+    echo $result;
 }
 
 ?>
@@ -41,7 +41,7 @@ if (isset($_POST['password']) && isset($_POST['nameSite']) && isset($_POST['url'
         ?>
         <div>
             <fieldset>
-                <p><?php echo $password->getPasswordEncrypted() ?></p>
+                <input type="password" value="<?php echo htmlspecialchars($password->getPasswordEncrypted(), ENT_QUOTES, 'UTF-8'); ?>">
                 <button>Modifier le mot de passe</button>
                 <button>Supprimer le mot de passe</button>
             </fieldset>

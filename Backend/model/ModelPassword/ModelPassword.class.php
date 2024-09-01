@@ -10,16 +10,14 @@ class ModelPassword extends ModelAbstraite
         parent::__construct();
     }
 
-    public function addPassword(Password $password,$key){
-        $query = "INSERT INTO password (passwordEncrypted, siteName, siteURL, notes, created_at, salt, iv, idUser) VALUES (:passwordEncrypted, :siteName, :siteURL, :notes, :created_at, :salt, :iv, :idUser)";
+    public function addPassword(Password $password){
+        $query = "INSERT INTO password (passwordEncrypted, siteName, siteURL, notes, created_at, idUser) VALUES (:passwordEncrypted, :siteName, :siteURL, :notes, :created_at,:idUser)";
         $req = $this->pdo->prepare($query);
-        $req -> bindValue(':passwordEncrypted', openssl_encrypt($password->getPasswordEncrypted(), 'aes-256-cbc', $key, 0, $password->getIv()));
+        $req -> bindValue(':passwordEncrypted', $password->getPasswordEncrypted());
         $req -> bindValue(':siteName', $password->getSiteName());
         $req -> bindValue(':siteURL', $password->getSiteURL());
         $req -> bindValue(':notes', $password->getNotes());
         $req -> bindValue(':created_at', $password->getCreated_at());
-        $req -> bindValue(':salt', $password->getSalt());
-        $req -> bindValue(':iv', $password->getIv());
         $req -> bindValue(':idUser', $password->getId());
         if ($req->execute()){
             return true;
@@ -38,7 +36,7 @@ class ModelPassword extends ModelAbstraite
         $results = $req->fetchAll(PDO::FETCH_ASSOC);
         $passwords = [];
         foreach ($results as $result) {
-            $passwords[] = new Password($result['passwordEncrypted'], $result['siteName'], $result['siteURL'], $result['created_at'],$result['salt'],$result['iv'] ,$result['notes']);
+            $passwords[] = new Password($result['passwordEncrypted'], $result['siteName'], $result['siteURL'], $result['created_at'],$result['notes']);
         }
         return $passwords;
     }

@@ -8,18 +8,16 @@ class Password
     private $notes;
     private $created_at;
     private $idUser;
-    private $salt;
-    private $iv;
 
-    public function __construct($passwordEncrypted, $siteName, $siteURL, $created_at, $salt, $iv,$notes = '')
+
+
+    public function __construct($passwordEncrypted, $siteName, $siteURL, $created_at,$notes = '')
     {
         $this->passwordEncrypted = $passwordEncrypted;
         $this->siteName = $siteName;
         $this->siteURL = $siteURL;
         $this->notes = $notes;
         $this->created_at = $created_at;
-        $this->salt = $salt;
-        $this->iv = $iv;
         $this->idUser = $_SESSION['id'];
     }
 
@@ -52,17 +50,6 @@ class Password
     {
         return $this->created_at;
     }
-
-    public function getSalt()
-    {
-        return $this->salt;
-    }
-
-    public function getIv()
-    {
-        return $this->iv;
-    }
-
 
     public function getId(){
         return $this->idUser;

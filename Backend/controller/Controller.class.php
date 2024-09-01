@@ -28,19 +28,16 @@ class Controller
             $note = htmlspecialchars($note);
             $date = date('Y-m-d H:i:s');
 
-            $salt = random_bytes(32); 
-            $iv_length = openssl_cipher_iv_length('aes-256-cbc');
-            $iv = openssl_random_pseudo_bytes($iv_length); // IV pour AES
-
             $user = $this->modelUser->getUserById($_SESSION['id']);
+            $key = $user->getPassword();
+            $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+            $encryptedPassword = openssl_encrypt($password, 'aes-256-cbc', $key, $options=0, $iv);
 
-            $key = hash_pbkdf2('sha256', $user->getPassword(), $salt, 1000, 32, true);
+            $combinedData = base64_encode($iv . $encryptedPassword);
 
-            $encryptedPassword = openssl_encrypt($password, 'aes-256-cbc', $key, 0, $iv);
+            $passwordObject = new Password($combinedData, $siteName, $siteURL, $date, $note);
 
-            $passwordObject = new Password($encryptedPassword, $siteName, $siteURL, $date, $note, $salt, $iv);
-
-            return $this->modelPassword->addPassword($passwordObject, $key);
+            return $this->modelPassword->addPassword($passwordObject);
         } else {
             return null;
         }
@@ -52,14 +49,26 @@ class Controller
         $user = $this->modelUser->getUserById($_SESSION['id']);
 
         foreach ($passwords as $password) {
-            $key = hash_pbkdf2('sha256', $user->getPassword(), $password->getSalt(), 1000, 32, true);
+            $key = $user->getPassword();  // La clé de chiffrement
 
-            $decryptedPassword = openssl_decrypt($password->getPasswordEncrypted(), 'aes-256-cbc', $key, 0, $password->getIv());
+            $combinedData = base64_decode($password->getPasswordEncrypted());
+
+
+            $iv_length = openssl_cipher_iv_length('aes-256-cbc');
+            $iv = substr($combinedData, 0, $iv_length);
+
+
+            $encryptedPassword = substr($combinedData, $iv_length);
+
+
+            $decryptedPassword = openssl_decrypt($encryptedPassword, 'aes-256-cbc', $key, $options=0, $iv);
+
 
             $password->setPasswordEncrypted($decryptedPassword);
         }
 
         return $passwords;
+
     }
 
 }
