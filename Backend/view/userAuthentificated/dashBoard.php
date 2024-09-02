@@ -12,6 +12,25 @@ if (isset($_POST['password']) && isset($_POST['nameSite']) && isset($_POST['url'
     echo $result;
 }
 
+if (isset($_POST['action']))
+{
+    if ($_POST['action'] === 'Modifier')
+    {
+        $idPassword = $_POST['idPassword'];
+        $siteName = $_POST['siteNameTest'];
+        $password = $_POST['passwordTest'];
+        $siteURL = $_POST['siteURLTest'];
+        $notes = $_POST['notesTest'];
+        echo $controller->updatePassword($idPassword,$password, $siteName, $siteURL, $notes);
+        $password_all = $controller->getAllPassword();
+    }
+    else if ($_POST['action'] === 'Supprimer')
+    {
+        $result = $controller->deletePassword($_POST['idPassword']);
+        $password_all = $controller->getAllPassword();
+    }
+}
+
 ?>
 
 <div>
@@ -40,11 +59,15 @@ if (isset($_POST['password']) && isset($_POST['nameSite']) && isset($_POST['url'
         foreach ($password_all as $password) {
         ?>
         <div>
-            <fieldset>
-                <input type="password" value="<?php echo htmlspecialchars($password->getPasswordEncrypted(), ENT_QUOTES, 'UTF-8'); ?>">
-                <button>Modifier le mot de passe</button>
-                <button>Supprimer le mot de passe</button>
-            </fieldset>
+            <form method="post">
+                <input type="hidden" name="idPassword" value="<?php echo $password->getId()?>">
+                <input type="text" name="siteNameTest" value="<?php echo $password->getSiteName(); ?>">
+                <input type="password" name="passwordTest" value="<?php echo $password->getPasswordEncrypted();?>">
+                <input type="text" name="siteURLTest" value="<?php echo $password->getSiteURL(); ?>">
+                <input type="text" name="notesTest" value="<?php echo $password->getNotes(); ?>">
+                <button type="submit" name="action" value="Modifier">Modifier</button>
+                <button type="submit" name="action" value="Supprimer">Supprimer</button>
+            </form>
         </div>
         <?php
         }

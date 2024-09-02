@@ -2,6 +2,7 @@
 
 class Password
 {
+    private $idPassword;
     private $passwordEncrypted;
     private $siteName;
     private $siteURL;
@@ -11,8 +12,9 @@ class Password
 
 
 
-    public function __construct($passwordEncrypted, $siteName, $siteURL, $created_at,$notes = '')
+    public function __construct($passwordEncrypted, $siteName, $siteURL, $created_at,$notes = '',$idPassword =0)
     {
+        $this->idPassword = $idPassword;
         $this->passwordEncrypted = $passwordEncrypted;
         $this->siteName = $siteName;
         $this->siteURL = $siteURL;
@@ -51,7 +53,18 @@ class Password
         return $this->created_at;
     }
 
-    public function getId(){
+    public function getIdUser(){
         return $this->idUser;
     }
+
+    public function getId()
+    {
+        return $this->idPassword;
+    }
+
+    public function setId($id)
+    {
+        $this->idPassword = $id;
+    }
+
 }
