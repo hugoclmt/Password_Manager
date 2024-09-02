@@ -3,8 +3,8 @@
 if (isset($_POST['email']) && isset($_POST['password'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
-
-    $result = $controllerAuth->connexion($email, $password);
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $result = $controllerAuth->connexion($email, $password,$ip);
     if (!$result) {
         echo "Erreur de connexion";
     }

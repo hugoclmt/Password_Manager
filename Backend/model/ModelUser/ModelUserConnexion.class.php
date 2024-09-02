@@ -1,14 +1,19 @@
 <?php
 require_once './Backend/model/ModelUser/ModelUser.class.php';
+require_once './Backend/classes/FailedLogins.class.php';
+require_once './Backend/model/ModelFailedLogins/ModelFailedLogin.class.php';
 
 class ModelUserConnexion extends ModelUser
 {
+    private $modelFailedLogin;
+
     public function __construct()
     {
         parent::__construct();
+        $this->modelFailedLogin = new ModelFailedLogin();
     }
 
-    public function connexion(Users $users)
+    public function connexion(Users $users,$ip)
     {
         $result = $this->verifierEmail($users->getEmail());
         if($result)
@@ -20,7 +25,7 @@ class ModelUserConnexion extends ModelUser
             }
             else
             {
-
+                $this->modelFailedLogin->insererFailedLogin(new FailedLogins($result['idUser'], date('Y-m-d H:i:s'), $ip));
                 return false; //Si le mdp est incorrect on retourne false
             }
         }

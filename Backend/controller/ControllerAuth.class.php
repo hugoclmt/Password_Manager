@@ -13,13 +13,13 @@ class ControllerAuth
         $this->modelUserInscription = new ModelUserInscription();
     }
 
-    public function connexion($email, $password)
+    public function connexion($email, $password,$ip)
     {
         if (!empty($email) || empty(!$password)) {
             $email = htmlspecialchars($email);
             $password = htmlspecialchars($password);
             $user = new Users($email, $password);
-            $result = $this->modelUserConnexion->connexion($user);
+            $result = $this->modelUserConnexion->connexion($user,$ip);
             if ($result) {
                 $_SESSION['connected'] = true;
                 header('Location: ./Frontend/userAuthentificated/indexUserAuthentificated.php');
