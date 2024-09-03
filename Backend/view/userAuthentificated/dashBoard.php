@@ -1,6 +1,6 @@
 <?php
 $password_all = $controller->getAllPassword();
-var_dump($password_all);
+
 if (isset($_POST['password']) && isset($_POST['nameSite']) && isset($_POST['url']) && isset($_POST['note'])) {
     $password = $_POST['password'];
     $nameSite = $_POST['nameSite'];
@@ -38,22 +38,39 @@ if (isset($_POST['action']))
 
 <div>
     <div>
-        <button id="openModalBtn">Ouvrir la Modale</button>
+        <button id="openModalBtn">Ajouter un mot de passe</button>
         <!-- Fenêtre Modale -->
         <div id="myModal" class="modal">
             <!-- Contenu de la Modale -->
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Votre nouveau mot de passe</h2>
+                <button id="generatePassword">Générer un mot de passe</button>
+                <label
+                >Minuscules
+                    <input class="checkboxPassword" type="checkbox" name="miniscule" id="miniscule" />
+                </label>
+                <label
+                >Majuscules
+                    <input class="checkboxPassword" type="checkbox" name="majuscule" id="majuscules" />
+                </label>
+                <label
+                >Chiffres
+                    <input class="checkboxPassword" type="checkbox" name="Chiffres" id="chiffres" />
+                </label>
+                <label
+                >Caractères spéciaux
+                    <input class="checkboxPassword" type="checkbox" name="caractères spéciaux" id="caractèresSpeciaux" />
+                </label>
                 <form method="post">
-                    <input id="password" type="password" name="password" placeholder="Votre mot de passe">
-                    <input type="text" name="nameSite" placeholder="Nom du site web">
+                    <input type="text" name="nameSite" placeholder="Nom d'utilisateur">
+                    <input id="password" type="text" name="password" placeholder="Votre mot de passe">
                     <input type="text" name="url" placeholder="URL du site web">
                     <input type="text" name="note" placeholder="Notes à ajouter">
 
                     <button id="savePassword">Enregistrer</button>
                 </form>
-                <button id="generatePassword">Générer un mot de passe</button>
+
             </div>
         </div>
     </div>

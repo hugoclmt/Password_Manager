@@ -18,7 +18,7 @@ class Controller
 
     public function addPassword($password, $siteName, $siteURL, $note)
     {
-        if (!empty($password)) {
+        if (!empty($password) && !empty($siteName) && !empty($siteURL)) {
             $password = $this->cryptPassword($password, $siteName, $siteURL, $note);
             if (!empty($password)) {
                 return $this->modelPassword->addPassword($password);
@@ -34,12 +34,13 @@ class Controller
     {
         $passwords = $this->modelPassword->getAllPassword();
         $user = $this->modelUser->getUserById($_SESSION['id']);
-        $key = substr(hash('sha256', $user->getPassword(), true), 0, 32);
+        $key = substr(hash('sha256', $user->getPassword(), true), 0, 32); // Génère une clé de 32 octets
 
         foreach ($passwords as $password) {
             $combinedData = base64_decode($password->getPasswordEncrypted());
             $iv_length = openssl_cipher_iv_length('aes-256-cbc');
 
+            // Vérifier que les données chiffrées ont la bonne longueur avant d'extraire l'IV
             if (strlen($combinedData) < $iv_length) {
                 echo "Erreur : Données chiffrées corrompues ou tronquées.";
                 continue;
@@ -48,6 +49,7 @@ class Controller
             $iv = substr($combinedData, 0, $iv_length);
             $encryptedPassword = substr($combinedData, $iv_length);
 
+            // Décryptage du mot de passe
             $decryptedPassword = openssl_decrypt($encryptedPassword, 'aes-256-cbc', $key, 0, $iv);
 
             if ($decryptedPassword === false) {
@@ -90,8 +92,10 @@ class Controller
         $note = htmlspecialchars($note);
         $date = date('Y-m-d H:i:s');
         $user = $this->modelUser->getUserById($_SESSION['id']);
-        $key = substr(hash('sha256', $user->getPassword(), true), 0, 32);
+        $key = substr(hash('sha256', $user->getPassword(), true), 0, 32); // Génère une clé de 32 octets
         $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+
+        // Chiffrement du mot de passe
         $encryptedPassword = openssl_encrypt($passwordEncrypted, 'aes-256-cbc', $key, 0, $iv);
 
         if ($encryptedPassword === false) {
@@ -99,6 +103,7 @@ class Controller
             return null;
         }
 
+        // Combinaison de l'IV et du mot de passe chiffré, encodée en base64
         $combinedData = base64_encode($iv . $encryptedPassword);
 
         return new Password($combinedData, $siteName, $siteURL, $date, $note);

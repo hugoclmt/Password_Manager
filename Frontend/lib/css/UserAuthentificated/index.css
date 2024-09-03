@@ -1,0 +1,104 @@
+html{
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    width: 100%;
+    flex-wrap: nowrap;
+
+}
+
+.headerEcriture{
+    color: black;
+}
+
+header div{
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 15px;
+    width: 100%;
+}
+
+#logo h1{
+    margin: 0 50% 0 0;
+}
+#logout a{
+    text-decoration: none;
+    font-size: 150%;
+    margin: 0 0 0 75%;
+    background-color: black;
+    color: white;
+    padding: 15px;
+    border-radius: 25px;
+}
+
+#logout a:hover{
+    background-color: red;
+    color: black;
+    transition: 0.3s ease-in-out;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+main div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.modal-content{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
+}
+form input{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 25px;
+    border: 1px solid black;
+    width: 20%;
+    text-align: center;
+}
+form button{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 25px;
+    border: 1px solid black;
+    width: 20%;
+    background-color: black;
+    color: white;
+}
+
+
