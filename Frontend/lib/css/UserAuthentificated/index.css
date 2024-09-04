@@ -1,13 +1,11 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 html{
     height: 100%;
     width: 100%;
     font-family: 'Roboto', sans-serif;
-
-}
-
-body{
-    margin: 0;
-    padding: 0;
 }
 
 header{
@@ -16,14 +14,13 @@ header{
     align-items: center;
     width: 100%;
     flex-wrap: nowrap;
-
 }
 
 .headerEcriture{
     color: black;
 }
 
-header div{
+header{
     padding: 0;
     display: flex;
     justify-content: space-around;
@@ -33,7 +30,8 @@ header div{
 }
 
 #logo h1{
-    margin: 0 50% 0 0;
+    width: 100%;
+    margin: 0 70% 0 0;
 }
 #logout a{
     text-decoration: none;
@@ -59,7 +57,7 @@ main{
     width: 100%;
 }
 
-main div{
+#ajoutPsw{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,31 +65,76 @@ main div{
     width: 100%;
 }
 
-.modal-content{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 100%;
-}
-form{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    flex-direction: column;
-    width: 100%;
-}
-form input{
-    margin: 10px;
+#openModalBtn{
+    text-align: center;
+    margin: 20px;
     padding: 10px;
     border-radius: 25px;
     border: 1px solid black;
-    width: 20%;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+#popup-overlay{
+    background-color: rgba(0,0,0,0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#popup-overlay.active{
+    display: flex!important;
+    transition: 3s ease-in-out;
+}
+
+.popup-content{
+    max-width: 600px;
+    padding: 30px;
+    width: 100% ;
+    box-sizing: border-box;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+}
+
+#close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 40px;
+    cursor: pointer;
+    padding: 5px 6px;
+    border-radius: 5px;
+}
+
+#formulaireAjoutPassword{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
+}
+
+#formulaireAjoutPassword input{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 35px;
+    border: 1px solid black;
+    width: 50%;
     text-align: center;
 }
-form button{
+
+#formulaireAjoutPassword button{
     margin: 10px;
     padding: 10px;
     border-radius: 25px;
@@ -99,6 +142,80 @@ form button{
     width: 20%;
     background-color: black;
     color: white;
+    cursor: pointer;
 }
 
+.popup-content p{
+    margin: 10px;
+}
 
+#contentPasswords{
+    display: flex;
+    margin: 30px;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.passwordContent {
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 40%;
+    height: 15em;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 25px;
+    border: 1px solid black;
+}
+
+.formPasswd{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.champsSupperieur{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 10px;
+}
+
+.champInferieur{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 10px;
+}
+
+.btns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.btns button{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 25px;
+    border: 1px solid black;
+    width: 38%;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

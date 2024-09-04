@@ -49,6 +49,7 @@ else{
         ?>
     </main>
     <script src="../lib/js/generateurMotDePasse.js"></script>
+    <script src="../lib/js/modal.js"></script>
 
 </body>
 </html>

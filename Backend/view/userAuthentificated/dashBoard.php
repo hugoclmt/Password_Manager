@@ -29,71 +29,83 @@ if (isset($_POST['action']))
     }
     else if ($_POST['action'] === 'Supprimer')
     {
-        $result = $controller->deletePassword($_POST['idPassword']);
         $password_all = $controller->getAllPassword();
+        if (sizeof($password_all) === 0)
+        {
+            echo "Impossible de supprimer";
+        }
+        else{
+            $result = $controller->deletePassword($_POST['idPassword']);
+            $password_all = $controller->getAllPassword();
+        }
     }
 }
-
 ?>
-
 <div>
-    <div>
-        <button id="openModalBtn">Ajouter un mot de passe</button>
-        <!-- Fenêtre Modale -->
-        <div id="myModal" class="modal">
-            <!-- Contenu de la Modale -->
-            <div class="modal-content">
-                <span class="close">&times;</span>
+    <div id="ajoutPsw">
+        <div id="popup-overlay" >
+            <div class="popup-content">
                 <h2>Votre nouveau mot de passe</h2>
-                <button id="generatePassword">Générer un mot de passe</button>
+                <p>Sélectionner au moins un choix</p>
                 <label
                 >Minuscules
-                    <input class="checkboxPassword" type="checkbox" name="miniscule" id="miniscule" />
+                    <input class="checkboxPassword" type="checkbox" name="miniscule" id="miniscule" checked/>
                 </label>
                 <label
                 >Majuscules
-                    <input class="checkboxPassword" type="checkbox" name="majuscule" id="majuscules" />
+                    <input class="checkboxPassword" type="checkbox" name="majuscule" id="majuscules" checked />
                 </label>
                 <label
                 >Chiffres
-                    <input class="checkboxPassword" type="checkbox" name="Chiffres" id="chiffres" />
+                    <input class="checkboxPassword" type="checkbox" name="Chiffres" id="chiffres" checked />
                 </label>
                 <label
                 >Caractères spéciaux
-                    <input class="checkboxPassword" type="checkbox" name="caractères spéciaux" id="caractèresSpeciaux" />
+                    <input class="checkboxPassword" type="checkbox" name="caractères spéciaux" id="caractèresSpeciaux" checked />
                 </label>
-                <form method="post">
+                <br>
+                <button id="generatePassword">Générer un mot de passe</button>
+                <br>
+                <form id="formulaireAjoutPassword" method="post">
                     <input type="text" name="nameSite" placeholder="Nom d'utilisateur">
-                    <input id="password" type="text" name="password" placeholder="Votre mot de passe">
+                    <input id="password" type="password" name="password" placeholder="Votre mot de passe">
                     <input type="text" name="url" placeholder="URL du site web">
                     <input type="text" name="note" placeholder="Notes à ajouter">
 
                     <button id="savePassword">Enregistrer</button>
                 </form>
-
+                <span id="close">&times;</span>
             </div>
         </div>
+        <button id="openModalBtn">Ajouter un mot de passe</button>
+        <!-- Fenêtre Modale -->
+
     </div>
-    <div>
+    <div id="contentPasswords">
         <?php
         foreach ($password_all as $password) {
         ?>
-        <div>
-            <form method="post">
+        <div class="passwordContent">
+            <form class="formPasswd" method="post">
                 <input type="hidden" name="idPassword" value="<?php echo $password->getId()?>">
-                <input type="text" name="siteNameTest" value="<?php echo $password->getSiteName(); ?>">
-                <input type="text" name="passwordTest" value="<?php echo $password->getPasswordEncrypted();?>">
-                <input type="text" name="siteURLTest" value="<?php echo $password->getSiteURL(); ?>">
-                <input type="text" name="notesTest" value="<?php echo $password->getNotes(); ?>">
-                <button type="submit" name="action" value="Modifier">Modifier</button>
-                <button type="submit" name="action" value="Supprimer">Supprimer</button>
+                <div class="champsSupperieur">
+                    <input type="text" name="siteNameTest" value="<?php echo $password->getSiteName(); ?>">
+                    <input type="text" name="passwordTest" value="<?php echo $password->getPasswordEncrypted();?>">
+                </div>
+                <div class="champInferieur">
+                    <input type="text" name="siteURLTest" value="<?php echo $password->getSiteURL(); ?>">
+                    <input type="text" name="notesTest" value="<?php echo $password->getNotes(); ?>">
+                </div>
+                <div class="btns">
+                    <button type="submit" name="action" value="Modifier">Modifier</button>
+                    <button type="submit" name="action" value="Supprimer">Supprimer</button>
+                </div>
             </form>
         </div>
         <?php
         }
         ?>
     </div>
-
 </div>
 
 
